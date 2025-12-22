@@ -1,11 +1,11 @@
-import type { RoundInput, RoundOutcome } from '@/src/logic/logic.types';
+import type { RoundInput, RoundOutcome } from '@/src/dice/dice.types';
 
-import { DICE_GAME_CONFIG } from '@/src/logic/gameConfig';
-import { ComparisonDirection, RoundResultStatus } from '@/src/logic/logic.types';
+import { DICE_GAME_CONFIG } from '@/src/dice/dice.config';
+import { ComparisonDirection, RoundResultStatus } from '@/src/dice/dice.types';
 import {
   DefaultRandomIntegerGenerator,
   type RandomIntegerGenerator,
-} from '@/src/shared/randomIntegerGenerator';
+} from '@/src/shared/random/randomIntegerGenerator';
 
 export class DiceGameService {
   constructor(
