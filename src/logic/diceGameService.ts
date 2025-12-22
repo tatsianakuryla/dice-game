@@ -1,27 +1,16 @@
-import type {
-  RoundResultStatus,
-  RoundInput,
-  ComparisonDirection,
-  RoundOutcome,
-} from '@/src/logic/logic.types';
+import type { RoundInput, RoundOutcome } from '@/src/logic/logic.types';
 
+import { DICE_GAME_CONFIG } from '@/src/logic/gameConfig';
+import { ComparisonDirection, RoundResultStatus } from '@/src/logic/logic.types';
 import {
   DefaultRandomIntegerGenerator,
   type RandomIntegerGenerator,
 } from '@/src/shared/randomIntegerGenerator';
 
 export class DiceGameService {
-  private readonly randomIntegerGenerator: RandomIntegerGenerator;
-
   constructor(
-    randomIntegerGenerator: RandomIntegerGenerator = new DefaultRandomIntegerGenerator(),
-  ) {
-    this.randomIntegerGenerator = randomIntegerGenerator;
-  }
-
-  private getRandomValue(): number {
-    return this.randomIntegerGenerator.generate();
-  }
+    private readonly randomIntegerGenerator: RandomIntegerGenerator = new DefaultRandomIntegerGenerator(),
+  ) {}
 
   private evaluateRoundStatus(roundInput: RoundInput, rolledValue: number): RoundResultStatus {
     const isWin =
@@ -32,8 +21,11 @@ export class DiceGameService {
     return isWin ? RoundResultStatus.Win : RoundResultStatus.Lose;
   }
 
-  public playTheGame(roundInput: RoundInput): RoundOutcome {
-    const rolledValue = this.getRandomValue();
+  public playRound(roundInput: RoundInput): RoundOutcome {
+    const rolledValue = this.randomIntegerGenerator.generateInclusive(
+      DICE_GAME_CONFIG.minimumRollValue,
+      DICE_GAME_CONFIG.maximumRollValue,
+    );
 
     return {
       roundInput,
