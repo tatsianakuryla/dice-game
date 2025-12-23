@@ -18,6 +18,13 @@ export const PageSectionWrapper = ({ children }: PageSectionWrapperProperties): 
           flexDirection: 'column',
           alignItems: 'center',
           gap: 2,
+          '@media (max-width: 840px)': {
+            padding: '16px 30px',
+          },
+          '@media (max-width: 660px)': {
+            padding: '16px 15px',
+            maxWidth: '660px',
+          },
         }}
       >
         {children}
