@@ -10,9 +10,18 @@ interface GameSliderProperties {
 }
 
 export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Element {
-  const handleSliderCommit = (_event: Event | SyntheticEvent, newValue: number | number[]) => {
+  const handleSliderChange = (_event: Event | SyntheticEvent, newValue: number | number[]) => {
     onChange(Array.isArray(newValue) ? newValue[0] : newValue);
   };
+
+  const marks = [
+    { value: 0 },
+    { value: 20 },
+    { value: 40 },
+    { value: 60 },
+    { value: 80 },
+    { value: 100 },
+  ];
 
   return (
     <Box
@@ -26,15 +35,14 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
       }}
     >
       <Slider
-        aria-label=""
+        aria-label="Threshold value"
         min={0}
         max={100}
-        step={20}
         valueLabelDisplay="on"
-        marks
+        marks={marks}
         size="small"
         value={value}
-        onChangeCommitted={handleSliderCommit}
+        onChange={handleSliderChange}
       />
       <Box
         sx={{
