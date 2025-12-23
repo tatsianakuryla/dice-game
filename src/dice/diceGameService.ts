@@ -20,8 +20,8 @@ export class DiceGameService {
 
   public playRound(roundInput: RoundInput): RoundOutcome {
     const rolledValue = this.randomIntegerGenerator.generateInclusive(
-      DICE_GAME_CONFIG.minimumRollValue,
-      DICE_GAME_CONFIG.maximumRollValue,
+      DICE_GAME_CONFIG.minimumValue,
+      DICE_GAME_CONFIG.maximumValue,
     );
 
     return {

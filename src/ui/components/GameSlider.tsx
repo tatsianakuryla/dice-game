@@ -4,6 +4,8 @@ import { Box, Slider, Typography } from '@mui/material';
 
 import type { JSX, SyntheticEvent } from 'react';
 
+import { DICE_GAME_CONFIG } from '@/src/dice/dice.config';
+
 interface GameSliderProperties {
   value: number;
   onChange: (value: number) => void;
@@ -36,8 +38,8 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
     >
       <Slider
         aria-label="Threshold value"
-        min={0}
-        max={100}
+        min={DICE_GAME_CONFIG.minimumValue}
+        max={DICE_GAME_CONFIG.maximumValue}
         valueLabelDisplay="on"
         marks={marks}
         size="small"
@@ -63,8 +65,8 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
           color: 'text.secondary',
         }}
       >
-        <Typography>0</Typography>
-        <Typography>100</Typography>
+        <Typography>{DICE_GAME_CONFIG.minimumValue}</Typography>
+        <Typography>{DICE_GAME_CONFIG.maximumValue}</Typography>
       </Box>
     </Box>
   );
