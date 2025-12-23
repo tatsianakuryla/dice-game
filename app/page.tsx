@@ -1,10 +1,12 @@
 import type { JSX } from 'react';
 
+import { PageSectionWrapper } from '@/src/ui/components/PageSectionWrapper';
+
 export default function Home(): JSX.Element {
   return (
     <div>
       <main>
-        <div>Dice game</div>
+        <PageSectionWrapper>Dice game</PageSectionWrapper>
       </main>
     </div>
   );
