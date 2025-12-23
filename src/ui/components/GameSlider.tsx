@@ -5,6 +5,7 @@ import { Box, Slider, Typography } from '@mui/material';
 import type { JSX, SyntheticEvent } from 'react';
 
 import { DICE_GAME_CONFIG } from '@/src/dice/dice.config';
+import { UI_CONSTANTS } from '@/src/ui/constants/uiConstants';
 
 interface GameSliderProperties {
   value: number;
@@ -15,15 +16,6 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
   const handleSliderChange = (_event: Event | SyntheticEvent, newValue: number | number[]) => {
     onChange(Array.isArray(newValue) ? newValue[0] : newValue);
   };
-
-  const marks = [
-    { value: 0 },
-    { value: 20 },
-    { value: 40 },
-    { value: 60 },
-    { value: 80 },
-    { value: 100 },
-  ];
 
   return (
     <Box
@@ -41,7 +33,7 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
         min={DICE_GAME_CONFIG.minimumValue}
         max={DICE_GAME_CONFIG.maximumValue}
         valueLabelDisplay="on"
-        marks={marks}
+        marks={UI_CONSTANTS.SLIDER_MARKS}
         size="small"
         value={value}
         onChange={handleSliderChange}

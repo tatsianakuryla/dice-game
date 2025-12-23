@@ -6,6 +6,8 @@ import type { RoundOutcome } from '@/src/dice/dice.types';
 
 import { ComparisonDirection } from '@/src/dice/dice.types';
 import { DiceGameService } from '@/src/dice/diceGameService';
+import { getAlertMessage } from '@/src/shared/getAlertMessage';
+import { AlertMessages, UI_CONSTANTS } from '@/src/ui/constants/uiConstants';
 import { DiceGameState } from '@/src/ui/diceGameState/diceGameState';
 
 interface UseDiceGameReturn {
@@ -28,7 +30,7 @@ export const useDiceGame = (): UseDiceGameReturn => {
   const diceGameService = useRef(new DiceGameService()).current;
   const diceGameState = useRef(new DiceGameState()).current;
 
-  const [threshold, setThreshold] = useState<number>(20);
+  const [threshold, setThreshold] = useState<number>(UI_CONSTANTS.DEFAULT_THRESHOLD);
   const [condition, setCondition] = useState<ComparisonDirection>(ComparisonDirection.Under);
   const [roundOutcome, setRoundOutcome] = useState<RoundOutcome | null>(null);
   const [history, setHistory] = useState<RoundOutcome[]>([]);
@@ -43,14 +45,19 @@ export const useDiceGame = (): UseDiceGameReturn => {
     setIsAlertOpen(true);
   }, [condition, threshold, diceGameService, diceGameState]);
 
+  const getAlertMessageType = (outcome: RoundOutcome): AlertMessages => {
+    if (outcome.rolledValue > outcome.roundInput.threshold) {
+      return AlertMessages.NUMBER_HIGHER;
+    }
+    if (outcome.rolledValue < outcome.roundInput.threshold) {
+      return AlertMessages.NUMBER_LOWER;
+    }
+    return AlertMessages.NUMBER_EQUAL;
+  };
+
   const alertMessage = useMemo(() => {
     if (!roundOutcome) return '';
-
-    if (roundOutcome.rolledValue > roundOutcome.roundInput.threshold)
-      return 'The number was higher';
-    if (roundOutcome.rolledValue < roundOutcome.roundInput.threshold) return 'The number was lower';
-
-    return 'The number was equal';
+    return getAlertMessage(getAlertMessageType(roundOutcome));
   }, [roundOutcome]);
 
   return {
