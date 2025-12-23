@@ -3,7 +3,7 @@ import { Roboto } from 'next/font/google';
 import type { Metadata } from 'next';
 import type { ReactNode, JSX } from 'react';
 
-import './globals.css';
+import { Provider } from '@/app/provider';
 
 const roboto = Roboto({
   variable: '--roboto',
@@ -23,7 +23,9 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>{children}</body>
+      <body className={`${roboto.variable}`}>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
