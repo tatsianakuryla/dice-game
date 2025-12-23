@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, useMemo } from 'react';
 
 import type { RoundOutcome } from '@/src/dice/dice.types';
 
@@ -43,7 +43,15 @@ export const useDiceGame = (): UseDiceGameReturn => {
     setIsAlertOpen(true);
   }, [condition, threshold, diceGameService, diceGameState]);
 
-  const alertMessage = `The number was ${condition === ComparisonDirection.Under ? 'higher' : 'lower'}`;
+  const alertMessage = useMemo(() => {
+    if (!roundOutcome) return '';
+
+    if (roundOutcome.rolledValue > roundOutcome.roundInput.threshold)
+      return 'The number was higher';
+    if (roundOutcome.rolledValue < roundOutcome.roundInput.threshold) return 'The number was lower';
+
+    return 'The number was equal';
+  }, [roundOutcome]);
 
   return {
     threshold,
