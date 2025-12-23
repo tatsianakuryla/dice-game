@@ -6,18 +6,33 @@ import { ComparisonDirectionRadioButtons } from '@/src/ui/components/ComparisonD
 import { GameSlider } from '@/src/ui/components/GameSlider';
 import { PageSectionWrapper } from '@/src/ui/components/PageSectionWrapper';
 import { PlayRoundButton } from '@/src/ui/components/PlayRoundButton';
+import { ResultAlert } from '@/src/ui/components/ResultAlert';
 import { ResultsTable } from '@/src/ui/components/ResultsTable/ResultsTable';
 import { RolledValueDisplay } from '@/src/ui/components/RolledValueDisplay';
 import { useDiceGame } from '@/src/ui/hooks/useDiceGame';
 
 export default function Home(): JSX.Element {
-  const { threshold, setThreshold, condition, setCondition, roundOutcome, play, history } =
-    useDiceGame();
+  const {
+    threshold,
+    setThreshold,
+    condition,
+    setCondition,
+    roundOutcome,
+    play,
+    history,
+    isAlertOpen,
+    alertMessage,
+  } = useDiceGame();
 
   return (
     <div>
       <main>
         <PageSectionWrapper>
+          <ResultAlert
+            isOpen={isAlertOpen}
+            severity={roundOutcome?.result ? 'success' : 'error'}
+            message={alertMessage}
+          />
           <RolledValueDisplay rolledValue={roundOutcome?.rolledValue} />
           <ComparisonDirectionRadioButtons value={condition} onChange={setCondition} />
           <GameSlider value={threshold} onChange={setThreshold} />

@@ -18,6 +18,9 @@ interface UseDiceGameReturn {
   roundOutcome: RoundOutcome | null;
   history: RoundOutcome[];
 
+  isAlertOpen: boolean;
+  alertMessage: string;
+
   play: () => void;
 }
 
@@ -29,6 +32,7 @@ export const useDiceGame = (): UseDiceGameReturn => {
   const [condition, setCondition] = useState<ComparisonDirection>(ComparisonDirection.Under);
   const [roundOutcome, setRoundOutcome] = useState<RoundOutcome | null>(null);
   const [history, setHistory] = useState<RoundOutcome[]>([]);
+  const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
 
   const play = useCallback(() => {
     const outcome = diceGameService.playRound({ threshold, condition });
@@ -36,7 +40,10 @@ export const useDiceGame = (): UseDiceGameReturn => {
     diceGameState.addRound(outcome);
     setRoundOutcome(outcome);
     setHistory(diceGameState.gameHistory);
+    setIsAlertOpen(true);
   }, [condition, threshold, diceGameService, diceGameState]);
+
+  const alertMessage = `The number was ${condition === ComparisonDirection.Under ? 'higher' : 'lower'}`;
 
   return {
     threshold,
@@ -47,6 +54,9 @@ export const useDiceGame = (): UseDiceGameReturn => {
 
     roundOutcome,
     history,
+
+    isAlertOpen,
+    alertMessage,
 
     play,
   };

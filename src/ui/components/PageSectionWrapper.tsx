@@ -13,7 +13,7 @@ export const PageSectionWrapper = ({ children }: PageSectionWrapperProperties): 
         sx={{
           maxWidth: '720px',
           margin: '0 auto',
-          padding: '123px 60px 20px 60px',
+          padding: '15px 60px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
