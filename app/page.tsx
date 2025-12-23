@@ -1,32 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-
 import type { JSX } from 'react';
 
-import { ComparisonDirection } from '@/src/dice/dice.types';
 import { ComparisonDirectionRadioButtons } from '@/src/ui/components/ComparisonDirectionRadioButtons';
 import { GameSlider } from '@/src/ui/components/GameSlider';
 import { PageSectionWrapper } from '@/src/ui/components/PageSectionWrapper';
 import { PlayRoundButton } from '@/src/ui/components/PlayRoundButton';
 import { RolledValueDisplay } from '@/src/ui/components/RolledValueDisplay';
+import { useDiceGame } from '@/src/ui/hooks/useDiceGame';
 
 export default function Home(): JSX.Element {
-  const [threshold, setThreshold] = useState<number>(20);
-  const [direction, setDirection] = useState<ComparisonDirection>(ComparisonDirection.Under);
-  const [rolledValue] = useState<number | undefined>(undefined);
+  const { threshold, setThreshold, condition, setCondition, roundOutcome, play } = useDiceGame();
 
-  const handlePlayRoundButtonClick = () => {
-    // TODO
-  };
   return (
     <div>
       <main>
         <PageSectionWrapper>
-          <RolledValueDisplay rolledValue={rolledValue} />
-          <ComparisonDirectionRadioButtons value={direction} onChange={setDirection} />
+          <RolledValueDisplay rolledValue={roundOutcome?.rolledValue} />
+          <ComparisonDirectionRadioButtons value={condition} onChange={setCondition} />
           <GameSlider value={threshold} onChange={setThreshold} />
-          <PlayRoundButton onClick={handlePlayRoundButtonClick} />
+          <PlayRoundButton onClick={play} />
         </PageSectionWrapper>
       </main>
     </div>
