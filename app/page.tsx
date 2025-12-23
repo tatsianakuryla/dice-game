@@ -8,6 +8,7 @@ import { ComparisonDirection } from '@/src/dice/dice.types';
 import { ComparisonDirectionRadioButtons } from '@/src/ui/components/ComparisonDirectionRadioButtons';
 import { GameSlider } from '@/src/ui/components/GameSlider';
 import { PageSectionWrapper } from '@/src/ui/components/PageSectionWrapper';
+import { PlayRoundButton } from '@/src/ui/components/PlayRoundButton';
 import { RolledValueDisplay } from '@/src/ui/components/RolledValueDisplay';
 
 export default function Home(): JSX.Element {
@@ -15,6 +16,9 @@ export default function Home(): JSX.Element {
   const [direction, setDirection] = useState<ComparisonDirection>(ComparisonDirection.Under);
   const [rolledValue] = useState<number | undefined>(undefined);
 
+  const handlePlayRoundButtonClick = () => {
+    // TODO
+  };
   return (
     <div>
       <main>
@@ -22,6 +26,7 @@ export default function Home(): JSX.Element {
           <RolledValueDisplay rolledValue={rolledValue} />
           <ComparisonDirectionRadioButtons value={direction} onChange={setDirection} />
           <GameSlider value={threshold} onChange={setThreshold} />
+          <PlayRoundButton onClick={handlePlayRoundButtonClick} />
         </PageSectionWrapper>
       </main>
     </div>

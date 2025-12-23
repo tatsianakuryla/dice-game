@@ -21,7 +21,11 @@ export function ComparisonDirectionRadioButtons({
   };
 
   return (
-    <FormControl>
+    <FormControl
+      sx={{
+        marginBottom: '16px',
+      }}
+    >
       <RadioGroup row value={value} onChange={handleChange}>
         <FormControlLabel value={ComparisonDirection.Under} control={<Radio />} label="Under" />
         <FormControlLabel value={ComparisonDirection.Over} control={<Radio />} label="Over" />
