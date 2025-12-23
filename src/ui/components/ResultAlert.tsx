@@ -29,7 +29,9 @@ export const ResultAlert = ({
             success: <CheckCircleOutlineIcon fontSize="inherit" />,
           }}
         >
-          <AlertTitle sx={{ marginBottom, fontSize: textSize }}>{alertTitle}</AlertTitle>
+          <AlertTitle sx={{ marginBottom, fontSize: textSize, lineHeight: 1.6 }}>
+            {alertTitle}
+          </AlertTitle>
           {message}
         </Alert>
       </Collapse>

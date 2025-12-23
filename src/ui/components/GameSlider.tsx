@@ -43,6 +43,16 @@ export function GameSlider({ value, onChange }: GameSliderProperties): JSX.Eleme
         size="small"
         value={value}
         onChange={handleSliderChange}
+        sx={{
+          '& .MuiSlider-valueLabel': {
+            fontSize: 14,
+            fontWeight: 500,
+            lineHeight: '157%',
+            letterSpacing: '0.1px',
+            padding: '4px 12px 2px 12px',
+            borderRadius: '4px',
+          },
+        }}
       />
       <Box
         sx={{

@@ -11,9 +11,9 @@ export const PageSectionWrapper = ({ children }: PageSectionWrapperProperties): 
     <section>
       <Box
         sx={{
-          maxWidth: '720px',
+          maxWidth: '840px',
           margin: '0 auto',
-          padding: '15px 60px',
+          padding: '16px 120px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

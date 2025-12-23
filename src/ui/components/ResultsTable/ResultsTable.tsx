@@ -13,8 +13,27 @@ interface ResultsTableProperties {
 
 export const ResultsTable = ({ rows }: ResultsTableProperties): JSX.Element => {
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: '600px' }} aria-label="Game results table">
+    <TableContainer
+      sx={{
+        marginTop: '-3px',
+        marginLeft: '14px',
+      }}
+    >
+      <Table
+        sx={{
+          minWidth: '600px',
+          '& .MuiTableBody-root .MuiTableCell-root': {
+            padding: '6px 16px',
+          },
+          '& .MuiTableCell-root:first-of-type': {
+            width: '32%',
+          },
+          '& .MuiTableCell-root:nth-of-type(2)': {
+            width: '33%',
+          },
+        }}
+        aria-label="Game results table"
+      >
         <TableHead>
           <TableRow>
             {RESULTS_TABLE_COLS.map((col) => (

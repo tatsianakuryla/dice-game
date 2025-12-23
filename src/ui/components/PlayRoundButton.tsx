@@ -12,6 +12,7 @@ export const PlayRoundButton = ({ onClick }: PlayRoundButtonParameters): JSX.Ele
       sx={{
         minWidth: '320px',
         maxWidth: '320px',
+        marginTop: '-3px',
       }}
       type="button"
       variant="contained"
