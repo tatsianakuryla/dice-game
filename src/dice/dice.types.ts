@@ -1,11 +1,6 @@
 export enum ComparisonDirection {
-  Under = 'UNDER',
-  Over = 'OVER',
-}
-
-export enum RoundResultStatus {
-  Win = 'WIN',
-  Lose = 'LOSE',
+  Under = 'Under',
+  Over = 'Over',
 }
 
 export interface RoundInput {
@@ -16,6 +11,6 @@ export interface RoundInput {
 export interface RoundOutcome {
   roundInput: RoundInput;
   rolledValue: number;
-  result: RoundResultStatus;
-  timestampIso: string;
+  result: boolean;
+  timestamp: Date;
 }

@@ -1,7 +1,7 @@
 import type { RoundInput, RoundOutcome } from '@/src/dice/dice.types';
 
 import { DICE_GAME_CONFIG } from '@/src/dice/dice.config';
-import { ComparisonDirection, RoundResultStatus } from '@/src/dice/dice.types';
+import { ComparisonDirection } from '@/src/dice/dice.types';
 import {
   DefaultRandomIntegerGenerator,
   type RandomIntegerGenerator,
@@ -12,13 +12,10 @@ export class DiceGameService {
     private readonly randomIntegerGenerator: RandomIntegerGenerator = new DefaultRandomIntegerGenerator(),
   ) {}
 
-  private evaluateRoundStatus(roundInput: RoundInput, rolledValue: number): RoundResultStatus {
-    const isWin =
-      roundInput.condition === ComparisonDirection.Under
-        ? rolledValue < roundInput.threshold
-        : rolledValue > roundInput.threshold;
-
-    return isWin ? RoundResultStatus.Win : RoundResultStatus.Lose;
+  private evaluateRoundStatus(roundInput: RoundInput, rolledValue: number): boolean {
+    return roundInput.condition === ComparisonDirection.Under
+      ? rolledValue < roundInput.threshold
+      : rolledValue > roundInput.threshold;
   }
 
   public playRound(roundInput: RoundInput): RoundOutcome {
@@ -31,7 +28,7 @@ export class DiceGameService {
       roundInput,
       rolledValue,
       result: this.evaluateRoundStatus(roundInput, rolledValue),
-      timestampIso: new Date().toISOString(),
+      timestamp: new Date(),
     };
   }
 }
