@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
           <ResultAlert
             isOpen={isAlertOpen}
             severity={roundOutcome?.result ? 'success' : 'error'}
-            message={alertMessage}
+            message={roundOutcome?.result ? undefined : alertMessage}
           />
           <RolledValueDisplay rolledValue={roundOutcome?.rolledValue} />
           <ComparisonDirectionRadioButtons value={condition} onChange={setCondition} />
