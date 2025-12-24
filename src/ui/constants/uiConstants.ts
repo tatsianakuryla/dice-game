@@ -1,3 +1,5 @@
+import { DICE_GAME_CONFIG } from '@/src/dice/dice.config';
+
 export enum AlertMessages {
   NUMBER_HIGHER = 'NUMBER_HIGHER',
   NUMBER_LOWER = 'NUMBER_LOWER',
@@ -31,11 +33,11 @@ export const UI_CONSTANTS = {
   },
 
   SLIDER_MARKS: [
-    { value: 1 },
+    { value: DICE_GAME_CONFIG.minimumValue },
     { value: 20 },
     { value: 40 },
     { value: 60 },
     { value: 80 },
-    { value: 100 },
+    { value: DICE_GAME_CONFIG.maximumValue },
   ],
 } as const;
