@@ -22,6 +22,7 @@ export const ResultsTableRow = ({ row }: ResultsTableRowProperties): JSX.Element
       <TableCell>{`${row.roundInput.condition} ${row.roundInput.threshold}`}</TableCell>
       <TableCell
         sx={{ color: row.result ? UI_CONSTANTS.TABLE.COLORS.WIN : UI_CONSTANTS.TABLE.COLORS.LOSE }}
+        aria-label={row.result ? 'Win' : 'Lose'}
       >
         {row.rolledValue}
       </TableCell>
