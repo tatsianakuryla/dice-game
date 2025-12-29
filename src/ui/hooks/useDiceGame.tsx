@@ -43,7 +43,7 @@ export const useDiceGame = (): UseDiceGameReturn => {
     setRoundOutcome(outcome);
     setHistory(diceGameState.gameHistory);
     setIsAlertOpen(true);
-  }, [condition, threshold, diceGameService, diceGameState]);
+  }, [condition, threshold]);
 
   const getAlertMessageType = (outcome: RoundOutcome): AlertMessages => {
     if (outcome.rolledValue > outcome.roundInput.threshold) {
