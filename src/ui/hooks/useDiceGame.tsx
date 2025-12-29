@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState, useMemo } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { RoundOutcome } from '@/src/dice/dice.types';
 
@@ -55,10 +55,7 @@ export const useDiceGame = (): UseDiceGameReturn => {
     return AlertMessages.NUMBER_EQUAL;
   };
 
-  const alertMessage = useMemo(() => {
-    if (!roundOutcome) return '';
-    return getAlertMessage(getAlertMessageType(roundOutcome));
-  }, [roundOutcome]);
+  const alertMessage = !roundOutcome ? '' : getAlertMessage(getAlertMessageType(roundOutcome));
 
   return {
     threshold,
